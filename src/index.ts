@@ -1,7 +1,10 @@
 import { serve } from '@hono/node-server'
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi'
+import { swaggerUI } from '@hono/swagger-ui'
 
-const app = new OpenAPIHono().basePath('/api/v1')
+const API_PREFIX = '/api/v1'
+
+const app = new OpenAPIHono().basePath(API_PREFIX)
 
 const ParamsSchema = z.object({
   id: z
@@ -68,6 +71,8 @@ app.doc('/doc', {
     title: 'hono-rest',
   },
 })
+
+app.get('/docs', swaggerUI({ url: `${API_PREFIX}/doc` }))
 
 serve(
   {
