@@ -1,18 +1,10 @@
-export type ISetType = 'ECL' | 'FDN'
-
-type ISet = {
-  id: number
-  name: string
-  code: ISetType
-  cardCount: number
-  mechanics: string[]
-}
+import { SetCodeEnum, type ISet } from '../interfaces.js'
 
 export const sets: ISet[] = [
   {
     id: 0,
     name: 'Lorwyn Eclipsed',
-    code: 'ECL',
+    code: SetCodeEnum.ECL,
     cardCount: 274,
     mechanics: [
       'Blight',
@@ -35,7 +27,7 @@ export const sets: ISet[] = [
   {
     id: 1,
     name: 'Foundations',
-    code: 'FDN',
+    code: SetCodeEnum.FDN,
     cardCount: 271,
     mechanics: ['Flash', 'Flashback', 'Kicker', 'Landfall', 'Prowess', 'Raid', 'Threshold'],
   },
