@@ -63,7 +63,6 @@ app.openapi(route, (c) => {
   )
 })
 
-// The OpenAPI documentation will be available at /doc
 app.doc('/doc', {
   openapi: '3.0.0',
   info: {
