@@ -1,77 +1,26 @@
-import { serve } from '@hono/node-server'
-import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi'
-import { swaggerUI } from '@hono/swagger-ui'
+import { serve } from "@hono/node-server";
+import { swaggerUI } from "@hono/swagger-ui";
 
-const API_PREFIX = '/api/v1'
+import setsRouter from "./routes/sets/sets.index.js";
+import createRouter from "./create_router.js";
 
-const app = new OpenAPIHono().basePath(API_PREFIX)
+const API_PREFIX = "/api/v1";
 
-const ParamsSchema = z.object({
-  id: z
-    .string()
-    .min(3)
-    .openapi({
-      param: {
-        name: 'id',
-        in: 'path',
-      },
-      example: '1212121',
-    }),
-})
+const app = createRouter(API_PREFIX);
 
-const UserSchema = z
-  .object({
-    id: z.string().openapi({
-      example: '123',
-    }),
-    name: z.string().openapi({
-      example: 'John Doe',
-    }),
-    age: z.number().openapi({
-      example: 42,
-    }),
-  })
-  .openapi('User')
+const routers = [setsRouter];
 
-const route = createRoute({
-  method: 'get',
-  path: '/users/{id}',
-  request: {
-    params: ParamsSchema,
-  },
-  responses: {
-    200: {
-      content: {
-        'application/json': {
-          schema: UserSchema,
-        },
-      },
-      description: 'Retrieve the user',
-    },
-  },
-})
+routers.forEach((router) => app.route("/", router));
 
-app.openapi(route, (c) => {
-  const { id } = c.req.valid('param')
-  return c.json(
-    {
-      id,
-      age: 20,
-      name: 'Ultra-man',
-    },
-    200, // You should specify the status code even if it is 200.
-  )
-})
-
-app.doc('/doc', {
-  openapi: '3.0.0',
+app.doc("/doc", {
+  openapi: "3.0.0",
   info: {
-    version: '1.0.0',
-    title: 'hono-rest',
+    version: "1.0.0",
+    title: "hono-rest",
   },
-})
+});
 
-app.get('/docs', swaggerUI({ url: `${API_PREFIX}/doc` }))
+app.get("/docs", swaggerUI({ url: `${API_PREFIX}/doc` }));
 
 serve(
   {
@@ -79,6 +28,6 @@ serve(
     port: 3000,
   },
   (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`)
+    console.log(`Server is running on http://localhost:${info.port}`);
   },
-)
+);
