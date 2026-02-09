@@ -16,7 +16,7 @@ configureOpenAPI(app);
 serve(
   {
     fetch: app.fetch,
-    port: 3000,
+    port: config.port,
   },
   (info) => {
     console.log(`Server is running on http://localhost:${info.port}`);

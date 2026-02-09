@@ -6,7 +6,7 @@ export const configureOpenAPI = (app: OpenAPIHono) => {
   app.doc("/doc", {
     openapi: "3.0.0",
     info: {
-      version: "1.0.0",
+      version: config.appVersion,
       title: "hono-rest",
     },
   });
