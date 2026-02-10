@@ -1,17 +1,17 @@
-import { serve } from "@hono/node-server";
+import { serve } from '@hono/node-server'
 
-import setsRouter from "./routes/sets/sets.index.js";
-import createRouter from "./create_router.js";
-import { configureOpenAPI } from "./openapi.js";
-import config from "./config.js";
+import setsRouter from './routes/sets/sets.index.js'
+import createRouter from './create_router.js'
+import { configureOpenAPI } from './openapi.js'
+import config from './config.js'
 
-const app = createRouter(config.apiPrefix);
+const app = createRouter(config.apiPrefix)
 
-const routers = [setsRouter];
+const routers = [setsRouter]
 
-routers.forEach((router) => app.route("/", router));
+routers.forEach((router) => app.route('/', router))
 
-configureOpenAPI(app);
+configureOpenAPI(app)
 
 serve(
   {
@@ -19,6 +19,6 @@ serve(
     port: config.port,
   },
   (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
+    console.log(`Server is running on http://localhost:${info.port}`)
   },
-);
+)
