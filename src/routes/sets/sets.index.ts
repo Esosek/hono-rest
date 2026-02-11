@@ -4,6 +4,6 @@ import * as handlers from './sets.handlers.js'
 
 const setsRouter = createRouter('/sets')
   .openapi(routes.list, handlers.list)
-  .openapi(routes.oneById, handlers.oneByOne)
+  .openapi(routes.oneById, handlers.oneById)
 
 export default setsRouter
