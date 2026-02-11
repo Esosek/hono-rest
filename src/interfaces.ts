@@ -1,12 +1,7 @@
-export enum SetCodeEnum {
-  ECL = 'ecl',
-  FDN = 'fdn',
-}
-
 export type ISet = {
   id: number
   name: string
-  code: SetCodeEnum
+  code: string
   cardCount: number
   mechanics: string[]
 }
@@ -40,7 +35,7 @@ export enum CardTypeEnum {
 export type ICard = {
   id: number
   name: string
-  setCode: SetCodeEnum
+  setCode: string // TODO: This must be one of the existing sets
   color: ColorEnum
   rarity: RarityEnum
   type: CardTypeEnum
