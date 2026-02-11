@@ -8,10 +8,11 @@ import config from './config.js'
 const app = createRouter(config.apiPrefix)
 
 const routers = [setsRouter]
-
 routers.forEach((router) => app.route('/', router))
 
 configureOpenAPI(app)
+
+app.notFound((c) => c.json({ message: 'Endpoint not Found - ' + c.req.path }, 404))
 
 serve(
   {
