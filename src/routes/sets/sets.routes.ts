@@ -13,6 +13,19 @@ const InputSetSchema = SetSchema.omit({ id: true })
 
 const tags = ['Sets']
 
+const internalServerError = (message: string) => ({
+  content: {
+    'application/json': {
+      schema: z.object({ message: z.string() }).openapi({
+        example: {
+          message,
+        },
+      }),
+    },
+  },
+  description: 'Internal Server Error',
+})
+
 export const list = createRoute({
   tags,
   method: 'get',
@@ -29,17 +42,20 @@ export const list = createRoute({
       },
       description: 'All fetched sets',
     },
+    500: internalServerError(
+      '\nInvalid `prisma.set.findMany()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:9:35\n\n  6 \n  7 export const list: RouteHandler<IListRoute> = async (c) => {\n  8   try {\n→ 9     const sets = await prisma.set.findMany(\nThe table `main.Set` does not exist in the current database.',
+    ),
   },
 })
 
-export const oneById = createRoute({
+export const oneByCode = createRoute({
   tags,
   method: 'get',
-  path: '/{id}',
-  description: 'Fetch set by ID',
+  path: '/{code}',
+  description: 'Fetch set by code',
   request: {
     params: z.object({
-      id: z.coerce.number(),
+      code: z.string().openapi({ example: 'ECL' }),
     }),
   },
   responses: {
@@ -88,6 +104,9 @@ export const oneById = createRoute({
       },
       description: 'Validation error',
     },
+    500: internalServerError(
+      '\nInvalid `prisma.set.findUnique()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:34\n\n  23 export const oneByCode: RouteHandler<IOneByCodeRoute> = async (c) => {\n  24   const { code } = c.req.valid(\'param\')\n  25   try {\n→ 26     const set = await prisma.set.findUnique({\n           where: ""\n                  ~~\n         })\n\nArgument `where`: Invalid value provided. Expected SetWhereUniqueInput, provided String.',
+    ),
   },
 })
 
@@ -160,22 +179,12 @@ export const create = createRoute({
       },
       description: 'Validation error',
     },
-    500: {
-      content: {
-        'application/json': {
-          schema: z.object({ message: z.string() }).openapi({
-            example: {
-              message:
-                '\nInvalid `prisma.set.create()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:38\n\n  23 export const create: RouteHandler<ICreateRoute> = async (c) => {\n  24   const args = c.req.valid("json")\n  25   try {\n→ 26     const created = await prisma.set.create({\n           data: {\n             name: \"Lorwyn Eclipsed\",\n             code: \"ECL\",\n             cardCount: 274,\n             mechanics: [\n               \"Blight\",\n               \"Vivid\",\n               \"Affinity\",\n               \"Basic\",\n               \"Landcycling\",\n               \"Behold\",\n               \"Changeling\",\n               \"Conspire\",\n               \"Convoke\",\n               \"Evoke\",\n               \"Flashback\",\n               \"Persist\",\n               \"Proliferate\",\n               \"Transform\",\n               \"Wither\"\n             ]\n             ~~~~~~~~~~~~~~~\n           }\n         })\n\nArgument `mechanics`: Invalid value provided. Expected String, provided (String, String, String, String, String, String, String, String, String, String, String, String, String, String, String).',
-            },
-          }),
-        },
-      },
-      description: 'Internal Server Error',
-    },
+    500: internalServerError(
+      '\nInvalid `prisma.set.create()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:38\n\n  23 export const create: RouteHandler<ICreateRoute> = async (c) => {\n  24   const args = c.req.valid("json")\n  25   try {\n→ 26     const created = await prisma.set.create({\n           data: {\n             name: \"Lorwyn Eclipsed\",\n             code: \"ECL\",\n             cardCount: 274,\n             mechanics: [\n               \"Blight\",\n               \"Vivid\",\n               \"Affinity\",\n               \"Basic\",\n               \"Landcycling\",\n               \"Behold\",\n               \"Changeling\",\n               \"Conspire\",\n               \"Convoke\",\n               \"Evoke\",\n               \"Flashback\",\n               \"Persist\",\n               \"Proliferate\",\n               \"Transform\",\n               \"Wither\"\n             ]\n             ~~~~~~~~~~~~~~~\n           }\n         })\n\nArgument `mechanics`: Invalid value provided. Expected String, provided (String, String, String, String, String, String, String, String, String, String, String, String, String, String, String).',
+    ),
   },
 })
 
 export type IListRoute = typeof list
-export type IOneByIdRoute = typeof oneById
+export type IOneByCodeRoute = typeof oneByCode
 export type ICreateRoute = typeof create
