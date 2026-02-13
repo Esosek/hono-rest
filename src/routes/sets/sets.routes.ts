@@ -160,6 +160,19 @@ export const create = createRoute({
       },
       description: 'Validation error',
     },
+    500: {
+      content: {
+        'application/json': {
+          schema: z.object({ message: z.string() }).openapi({
+            example: {
+              message:
+                '\nInvalid `prisma.set.create()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:38\n\n  23 export const create: RouteHandler<ICreateRoute> = async (c) => {\n  24   const args = c.req.valid("json")\n  25   try {\n→ 26     const created = await prisma.set.create({\n           data: {\n             name: \"Lorwyn Eclipsed\",\n             code: \"ECL\",\n             cardCount: 274,\n             mechanics: [\n               \"Blight\",\n               \"Vivid\",\n               \"Affinity\",\n               \"Basic\",\n               \"Landcycling\",\n               \"Behold\",\n               \"Changeling\",\n               \"Conspire\",\n               \"Convoke\",\n               \"Evoke\",\n               \"Flashback\",\n               \"Persist\",\n               \"Proliferate\",\n               \"Transform\",\n               \"Wither\"\n             ]\n             ~~~~~~~~~~~~~~~\n           }\n         })\n\nArgument `mechanics`: Invalid value provided. Expected String, provided (String, String, String, String, String, String, String, String, String, String, String, String, String, String, String).',
+            },
+          }),
+        },
+      },
+      description: 'Internal Server Error',
+    },
   },
 })
 
