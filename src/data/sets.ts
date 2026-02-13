@@ -29,14 +29,6 @@ export const sets: ISet[] = [
     name: 'Foundations',
     code: 'FDN',
     cardCount: 271,
-    mechanics: [
-      'Flash',
-      'Flashback',
-      'Kicker',
-      'Landfall',
-      'Prowess',
-      'Raid',
-      'Threshold',
-    ],
+    mechanics: ['Flash', 'Flashback', 'Kicker', 'Landfall', 'Prowess', 'Raid', 'Threshold'],
   },
 ] as const

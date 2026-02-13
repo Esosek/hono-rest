@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Set {
+  id        Int    @id @default(autoincrement())
+  name      String @unique
+  code      String @unique
+  cardCount Int    @map("card_count")
+  mechanics String
+  cards     Card[]
+}
+
+enum CardColor {
+  RED
+  BLUE
+  WHITE
+  BLACK
+  GREEN
+  MULTICOLOR
+  COLORLESS
+}
+
+enum CardRarity {
+  COMMON
+  UNCOMMON
+  RARE
+  MYTHIC
+}
+
+enum CardType {
+  CREATURE
+  INSTANT
+  SORCERY
+  LAND
+  ARTIFACT
+  ENCHANTMENT
+}
+
+model Card {
+  id     Int        @id @default(autoincrement())
+  color  CardColor
+  rarity CardRarity
+  type   CardType
+  set    Set        @relation(fields: [setId], references: [id])
+  setId  Int        @map("set_id")
+}

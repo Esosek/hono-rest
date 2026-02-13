@@ -10,12 +10,16 @@
     "@hono/node-server": "^1.19.9",
     "@hono/swagger-ui": "^0.5.3",
     "@hono/zod-openapi": "^1.2.0",
+    "@prisma/adapter-better-sqlite3": "^7.4.0",
+    "@prisma/client": "^7.4.0",
     "dotenv": "^17.2.4",
     "hono": "^4.11.7",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^20.11.17",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20.19.33",
+    "prisma": "^7.4.0",
     "tsx": "^4.7.1",
     "typescript": "^5.8.3"
   }
