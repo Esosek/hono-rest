@@ -23,7 +23,7 @@ export const list: RouteHandler<IListRoute> = async (c) => {
 export const oneByCode: RouteHandler<IOneByCodeRoute> = async (c) => {
   const { code } = c.req.valid('param')
   try {
-    const set = await prisma.set.findUnique({ where: { code } })
+    const set = await prisma.set.findUnique({ where: { code: code.toUpperCase() } })
 
     if (!set) {
       log('fetch set by code', LogStatusEnum.ERROR, 'code ' + code + ' not found!')

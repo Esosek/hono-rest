@@ -4,9 +4,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
     "generate": "npx prisma generate",
-    "seed": "npx prisma db seed",
     "prisma:reset": "npx prisma migrate reset && npx prisma db seed"
   },
   "dependencies": {
