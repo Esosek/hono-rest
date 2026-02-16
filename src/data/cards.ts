@@ -1,10 +1,10 @@
-import { CardTypeEnum, ColorEnum, RarityEnum, SetCodeEnum, type ICard } from '../interfaces.js'
+import { CardTypeEnum, ColorEnum, RarityEnum, type ICard } from '../interfaces.js'
 
 const fdnCards: ICard[] = [
   {
     id: 1,
     name: 'Lightning Bolt',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.RED,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.INSTANT,
@@ -12,7 +12,7 @@ const fdnCards: ICard[] = [
   {
     id: 2,
     name: 'Goblin Guide',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.RED,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -22,7 +22,7 @@ const fdnCards: ICard[] = [
   {
     id: 3,
     name: 'Counterspell',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.BLUE,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.INSTANT,
@@ -30,7 +30,7 @@ const fdnCards: ICard[] = [
   {
     id: 4,
     name: 'Jace, the Mind Sculptor',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.BLUE,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -40,7 +40,7 @@ const fdnCards: ICard[] = [
   {
     id: 5,
     name: 'Swords to Plowshares',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.WHITE,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.INSTANT,
@@ -48,7 +48,7 @@ const fdnCards: ICard[] = [
   {
     id: 6,
     name: 'Serra Angel',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.WHITE,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.CREATURE,
@@ -58,7 +58,7 @@ const fdnCards: ICard[] = [
   {
     id: 7,
     name: 'Dark Ritual',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.BLACK,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.INSTANT,
@@ -66,7 +66,7 @@ const fdnCards: ICard[] = [
   {
     id: 8,
     name: 'Demonic Tutor',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.BLACK,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.SORCERY,
@@ -74,7 +74,7 @@ const fdnCards: ICard[] = [
   {
     id: 9,
     name: 'Llanowar Elves',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.GREEN,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.CREATURE,
@@ -84,7 +84,7 @@ const fdnCards: ICard[] = [
   {
     id: 10,
     name: 'Tarmogoyf',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.GREEN,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -94,7 +94,7 @@ const fdnCards: ICard[] = [
   {
     id: 11,
     name: 'Fire // Ice',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.MULTICOLOR,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.INSTANT,
@@ -102,7 +102,7 @@ const fdnCards: ICard[] = [
   {
     id: 12,
     name: 'Nicol Bolas, Planeswalker',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.MULTICOLOR,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -112,7 +112,7 @@ const fdnCards: ICard[] = [
   {
     id: 13,
     name: 'Sol Ring',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.ARTIFACT,
@@ -120,7 +120,7 @@ const fdnCards: ICard[] = [
   {
     id: 14,
     name: "Mishra's Workshop",
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.LAND,
@@ -128,7 +128,7 @@ const fdnCards: ICard[] = [
   {
     id: 15,
     name: 'Plains',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.LAND,
@@ -136,7 +136,7 @@ const fdnCards: ICard[] = [
   {
     id: 16,
     name: 'Island',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.LAND,
@@ -144,7 +144,7 @@ const fdnCards: ICard[] = [
   {
     id: 17,
     name: 'Swamp',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.LAND,
@@ -152,7 +152,7 @@ const fdnCards: ICard[] = [
   {
     id: 18,
     name: 'Mountain',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.LAND,
@@ -160,7 +160,7 @@ const fdnCards: ICard[] = [
   {
     id: 19,
     name: 'Forest',
-    setCode: SetCodeEnum.FDN,
+    setCode: 'FDN',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.LAND,
@@ -170,7 +170,7 @@ const eclCards: ICard[] = [
   {
     id: 1,
     name: 'Ashling the Pilgrim',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.RED,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -180,7 +180,7 @@ const eclCards: ICard[] = [
   {
     id: 2,
     name: 'Tarfire',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.RED,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.INSTANT,
@@ -188,7 +188,7 @@ const eclCards: ICard[] = [
   {
     id: 3,
     name: 'Merrow Reejerey',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.BLUE,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.CREATURE,
@@ -198,7 +198,7 @@ const eclCards: ICard[] = [
   {
     id: 4,
     name: 'Ponder',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.BLUE,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.INSTANT,
@@ -206,7 +206,7 @@ const eclCards: ICard[] = [
   {
     id: 5,
     name: 'Goldmeadow Harrier',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.WHITE,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.CREATURE,
@@ -216,7 +216,7 @@ const eclCards: ICard[] = [
   {
     id: 6,
     name: 'Ajani Goldmane',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.WHITE,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -226,7 +226,7 @@ const eclCards: ICard[] = [
   {
     id: 7,
     name: 'Thoughtseize',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.BLACK,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.SORCERY,
@@ -234,7 +234,7 @@ const eclCards: ICard[] = [
   {
     id: 8,
     name: 'Boggart Ram-Gang',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.BLACK,
     rarity: RarityEnum.UNCOMMON,
     type: CardTypeEnum.CREATURE,
@@ -244,7 +244,7 @@ const eclCards: ICard[] = [
   {
     id: 9,
     name: 'Llanowar Elves',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.GREEN,
     rarity: RarityEnum.COMMON,
     type: CardTypeEnum.CREATURE,
@@ -254,7 +254,7 @@ const eclCards: ICard[] = [
   {
     id: 10,
     name: 'Garruk Wildspeaker',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.GREEN,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.CREATURE,
@@ -264,7 +264,7 @@ const eclCards: ICard[] = [
   {
     id: 11,
     name: 'Figure of Destiny',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.MULTICOLOR,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.CREATURE,
@@ -274,7 +274,7 @@ const eclCards: ICard[] = [
   {
     id: 12,
     name: 'Cryptic Command',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.MULTICOLOR,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.INSTANT,
@@ -282,7 +282,7 @@ const eclCards: ICard[] = [
   {
     id: 13,
     name: 'Pashalik Mons',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.RARE,
     type: CardTypeEnum.LAND,
@@ -290,7 +290,7 @@ const eclCards: ICard[] = [
   {
     id: 14,
     name: 'Chalice of the Void',
-    setCode: SetCodeEnum.ECL,
+    setCode: 'ECL',
     color: ColorEnum.COLORLESS,
     rarity: RarityEnum.MYTHIC,
     type: CardTypeEnum.ARTIFACT,

@@ -46,10 +46,13 @@ enum CardType {
 }
 
 model Card {
-  id     Int        @id @default(autoincrement())
-  color  CardColor
-  rarity CardRarity
-  type   CardType
-  set    Set        @relation(fields: [setId], references: [id])
-  setId  Int        @map("set_id")
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  color     CardColor
+  rarity    CardRarity
+  type      CardType
+  power     Int?
+  toughness Int?
+  set       Set        @relation(fields: [setCode], references: [code])
+  setCode   String     @map("set_code")
 }

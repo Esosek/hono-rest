@@ -2,8 +2,7 @@ import type { RouteHandler } from '@hono/zod-openapi'
 import type { ICreateRoute, IListRoute, IOneByCodeRoute } from './sets.routes.js'
 import log, { LogStatusEnum } from '@/logger.js'
 import prisma from '@/prisma/prisma.js'
-
-const getErrorMessage = (error: unknown) => (error instanceof Error ? error.message : String(error))
+import { getErrorMessage } from '../routes_utils.js'
 
 export const list: RouteHandler<IListRoute> = async (c) => {
   try {
