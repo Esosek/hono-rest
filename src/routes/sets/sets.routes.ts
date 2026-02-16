@@ -1,15 +1,6 @@
 import { createRoute, z } from '@hono/zod-openapi'
 import { sets } from '@/data/sets.js'
-
-const SetSchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  code: z.string(),
-  cardCount: z.number(),
-  mechanics: z.array(z.string()),
-})
-
-const InputSetSchema = SetSchema.omit({ id: true })
+import { InputSetSchema, SetSchema } from './sets.schema.js'
 
 const tags = ['Sets']
 

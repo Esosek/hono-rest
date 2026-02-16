@@ -2,7 +2,6 @@ import type { RouteHandler } from '@hono/zod-openapi'
 import type { ICreateRoute, IListRoute, IOneByCodeRoute } from './sets.routes.js'
 import log, { LogStatusEnum } from '@/logger.js'
 import prisma from '@/prisma/prisma.js'
-import { HTTPException } from 'hono/http-exception'
 
 const getErrorMessage = (error: unknown) => (error instanceof Error ? error.message : String(error))
 
