@@ -14,22 +14,29 @@ export const list = createRoute({
   request: {
     query: z.object({
       set: z.string().optional().openapi({ example: 'ECL', description: 'Filters cards by set code' }),
-      type: z
-        .enum(CardType)
-        .optional()
-        .openapi({ example: CardType.CREATURE, description: 'Filters cards by card type' }),
-      rarity: z
-        .enum(CardRarity)
-        .optional()
-        .openapi({ example: CardRarity.COMMON, description: 'Filters cards by rarity' }),
+      type: z.enum(CardType).optional().openapi({ description: 'Filters cards by card type' }),
+      rarity: z.enum(CardRarity).optional().openapi({ description: 'Filters cards by rarity' }),
+      limit: z.coerce.number().optional().openapi({ example: 5, description: 'Number of cards per page' }),
+      offset: z.coerce.number().optional().openapi({ example: 0, description: 'Offset for pagination' }),
     }),
   },
   responses: {
     200: {
       content: {
         'application/json': {
-          schema: z.array(CardSchema).openapi({
-            example: cards,
+          schema: z.object({
+            total: z.number().openapi({ example: 15, description: 'Total number of cards' }),
+            limit: z.number().openapi({ example: 5 }),
+            offset: z.number().openapi({ example: 0 }),
+            filters: z.object({
+              set: z.string().optional().openapi({ example: 'FDN' }),
+              type: z.enum(CardType).optional(),
+              rarity: z.enum(CardRarity).optional(),
+            }),
+            currentPage: z.number().openapi({ example: 1 }),
+            data: z.array(CardSchema).openapi({
+              example: cards.slice(0, 5),
+            }),
           }),
         },
       },
