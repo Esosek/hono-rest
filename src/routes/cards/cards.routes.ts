@@ -71,4 +71,65 @@ export const list = createRoute({
   },
 })
 
+export const oneById = createRoute({
+  tags,
+  path: '/{id}',
+  method: 'get',
+  description: 'Get card by ID',
+  request: {
+    params: z.object({ id: z.coerce.number().openapi({ example: 1 }) }),
+  },
+  responses: {
+    200: {
+      content: {
+        'application/json': {
+          schema: CardSchema.openapi({ example: cards[0] }),
+        },
+      },
+      description: 'The requested card',
+    },
+    404: {
+      content: {
+        'application/json': {
+          schema: z
+            .object({
+              message: z.string(),
+            })
+            .openapi({ example: { message: 'Card not found!' } }),
+        },
+      },
+      description: 'Card not found',
+    },
+    422: {
+      content: {
+        'application/json': {
+          schema: z
+            .object({
+              success: z.boolean(),
+              error: z.object({
+                name: z.string(),
+                mesage: z.string(),
+              }),
+            })
+            .openapi({
+              example: {
+                success: false,
+                error: {
+                  name: 'ZodError',
+                  message:
+                    '[\n  {\n    "expected": "number",\n    "code": "invalid_type",\n    "received": "NaN",\n    "path": [\n      "id"\n    ],\n    "message": "Invalid input: expected number, received NaN"\n  }\n]',
+                },
+              },
+            }),
+        },
+      },
+      description: 'Validation error',
+    },
+    500: internalServerErrorResponse(
+      '\nInvalid `prisma.card.findUnique()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/cards/cards.handlers.ts:26:34\n\n  23 export const oneById: RouteHandler<IOneByIdRoute> = async (c) => {\n  24   const { id } = c.req.valid(\'param\')\n  25   try {\n→ 26     const set = await prisma.set.findUnique({\n           where: ""\n                  ~~\n         })\n\nArgument `where`: Invalid value provided. Expected SetWhereUniqueInput, provided String.',
+    ),
+  },
+})
+
 export type IListRoute = typeof list
+export type IOnebyIdRoute = typeof oneById

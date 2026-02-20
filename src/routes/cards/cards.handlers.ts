@@ -1,5 +1,5 @@
 import type { RouteHandler } from '@hono/zod-openapi'
-import type { IListRoute } from './cards.routes.js'
+import type { IListRoute, IOnebyIdRoute } from './cards.routes.js'
 import prisma from '@/prisma/prisma.js'
 import log, { LogStatusEnum } from '@/logger.js'
 import { getErrorMessage } from '../routes_utils.js'
@@ -43,6 +43,17 @@ export const list: RouteHandler<IListRoute> = async (c) => {
     )
   } catch (error) {
     log('fetch cards', LogStatusEnum.ERROR, getErrorMessage(error))
+    return c.json({ message: getErrorMessage(error) }, 500)
+  }
+}
+
+export const oneById: RouteHandler<IOnebyIdRoute> = async (c) => {
+  try {
+    const { id } = c.req.valid('param')
+    const card = await prisma.card.findUnique({ where: { id } })
+    if (!card) return c.json({ message: 'Card not found!' }, 404)
+    return c.json(card, 200)
+  } catch (error) {
     return c.json({ message: getErrorMessage(error) }, 500)
   }
 }
