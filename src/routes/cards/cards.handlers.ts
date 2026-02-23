@@ -51,9 +51,15 @@ export const oneById: RouteHandler<IOnebyIdRoute> = async (c) => {
   try {
     const { id } = c.req.valid('param')
     const card = await prisma.card.findUnique({ where: { id } })
-    if (!card) return c.json({ message: 'Card not found!' }, 404)
+    if (!card) {
+      log('fetch card', LogStatusEnum.ERROR, `card id ${id} not found`)
+
+      return c.json({ message: 'Card not found!' }, 404)
+    }
+    log('fetch card', LogStatusEnum.SUCCESS, `card ID: ${id}`)
     return c.json(card, 200)
   } catch (error) {
+    log('fetch card', LogStatusEnum.ERROR, `failed with error ${getErrorMessage(error)}`)
     return c.json({ message: getErrorMessage(error) }, 500)
   }
 }
