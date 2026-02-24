@@ -1,6 +1,6 @@
 import 'dotenv/config'
 
-type IConfig = {
+export type IConfig = {
   port: number
   apiPrefix: string
   appVersion: string

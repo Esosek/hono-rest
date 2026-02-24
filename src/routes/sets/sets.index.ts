@@ -1,4 +1,4 @@
-import createRouter from '@/create_router.js'
+import createRouter from '@/utils/create_router.js'
 import * as routes from './sets.routes.js'
 import * as handlers from './sets.handlers.js'
 
