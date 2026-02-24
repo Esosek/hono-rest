@@ -21,6 +21,14 @@ describe('Sets list', () => {
 })
 
 describe('Set by code', () => {
+  it('returns 404 when set not found', async () => {
+    const testRouter = createApp(config).route('/', setsRouter)
+
+    const set = await testRouter.request('/api/v1/sets/abc')
+    const result = await set.json()
+
+    expect(result).toEqual({ message: 'Set not found!' })
+  })
   it('successfully returns a set', async () => {
     const testRouter = createApp(config).route('/', setsRouter)
 

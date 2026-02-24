@@ -48,31 +48,6 @@ export const oneByCode = createRoute({
       description: 'The requested set',
     },
     404: getErrorResponse(404, 'Set not found!'),
-    422: {
-      content: {
-        'application/json': {
-          schema: z
-            .object({
-              success: z.boolean(),
-              error: z.object({
-                name: z.string(),
-                mesage: z.string(),
-              }),
-            })
-            .openapi({
-              example: {
-                success: false,
-                error: {
-                  name: 'ZodError',
-                  message:
-                    '[\n  {\n    "expected": "number",\n    "code": "invalid_type",\n    "received": "NaN",\n    "path": [\n      "id"\n    ],\n    "message": "Invalid input: expected number, received NaN"\n  }\n]',
-                },
-              },
-            }),
-        },
-      },
-      description: 'Validation error',
-    },
     500: getErrorResponse(
       500,
       '\nInvalid `prisma.set.findUnique()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:34\n\n  23 export const oneByCode: RouteHandler<IOneByCodeRoute> = async (c) => {\n  24   const { code } = c.req.valid(\'param\')\n  25   try {\n→ 26     const set = await prisma.set.findUnique({\n           where: ""\n                  ~~\n         })\n\nArgument `where`: Invalid value provided. Expected SetWhereUniqueInput, provided String.',
