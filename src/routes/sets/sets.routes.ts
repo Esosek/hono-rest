@@ -1,7 +1,7 @@
 import { createRoute, z } from '@hono/zod-openapi'
 import { sets } from '@/data/sets.js'
 import { InputSetSchema, SetSchema } from './sets.schema.js'
-import { internalServerErrorResponse } from '../routes_utils.js'
+import { getErrorResponse } from '../routes_utils.js'
 
 const tags = ['Sets']
 
@@ -21,7 +21,8 @@ export const list = createRoute({
       },
       description: 'All fetched sets',
     },
-    500: internalServerErrorResponse(
+    500: getErrorResponse(
+      500,
       '\nInvalid `prisma.set.findMany()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:9:35\n\n  6 \n  7 export const list: RouteHandler<IListRoute> = async (c) => {\n  8   try {\n→ 9     const sets = await prisma.set.findMany(\nThe table `main.Set` does not exist in the current database.',
     ),
   },
@@ -46,18 +47,7 @@ export const oneByCode = createRoute({
       },
       description: 'The requested set',
     },
-    404: {
-      content: {
-        'application/json': {
-          schema: z
-            .object({
-              message: z.string(),
-            })
-            .openapi({ example: { message: 'Set not found!' } }),
-        },
-      },
-      description: 'Set not found',
-    },
+    404: getErrorResponse(404, 'Set not found!'),
     422: {
       content: {
         'application/json': {
@@ -83,7 +73,8 @@ export const oneByCode = createRoute({
       },
       description: 'Validation error',
     },
-    500: internalServerErrorResponse(
+    500: getErrorResponse(
+      500,
       '\nInvalid `prisma.set.findUnique()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:34\n\n  23 export const oneByCode: RouteHandler<IOneByCodeRoute> = async (c) => {\n  24   const { code } = c.req.valid(\'param\')\n  25   try {\n→ 26     const set = await prisma.set.findUnique({\n           where: ""\n                  ~~\n         })\n\nArgument `where`: Invalid value provided. Expected SetWhereUniqueInput, provided String.',
     ),
   },
@@ -158,7 +149,8 @@ export const create = createRoute({
       },
       description: 'Validation error',
     },
-    500: internalServerErrorResponse(
+    500: getErrorResponse(
+      500,
       '\nInvalid `prisma.set.create()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/sets/sets.handlers.ts:26:38\n\n  23 export const create: RouteHandler<ICreateRoute> = async (c) => {\n  24   const args = c.req.valid("json")\n  25   try {\n→ 26     const created = await prisma.set.create({\n           data: {\n             name: \"Lorwyn Eclipsed\",\n             code: \"ECL\",\n             cardCount: 274,\n             mechanics: [\n               \"Blight\",\n               \"Vivid\",\n               \"Affinity\",\n               \"Basic\",\n               \"Landcycling\",\n               \"Behold\",\n               \"Changeling\",\n               \"Conspire\",\n               \"Convoke\",\n               \"Evoke\",\n               \"Flashback\",\n               \"Persist\",\n               \"Proliferate\",\n               \"Transform\",\n               \"Wither\"\n             ]\n             ~~~~~~~~~~~~~~~\n           }\n         })\n\nArgument `mechanics`: Invalid value provided. Expected String, provided (String, String, String, String, String, String, String, String, String, String, String, String, String, String, String).',
     ),
   },

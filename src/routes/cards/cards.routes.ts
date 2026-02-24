@@ -1,7 +1,7 @@
 import { createRoute, z } from '@hono/zod-openapi'
 import { CardSchema } from './cards.schema.js'
 import { cards } from '@/data/cards.js'
-import { internalServerErrorResponse } from '../routes_utils.js'
+import { getErrorResponse } from '../routes_utils.js'
 import { CardRarity, CardType } from '@/generated/prisma/enums.js'
 
 const tags = ['Cards']
@@ -67,7 +67,10 @@ export const list = createRoute({
       },
       description: 'Bad Request',
     },
-    500: internalServerErrorResponse(''),
+    500: getErrorResponse(
+      500,
+      '\nInvalid `prisma.card.findMany()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/cards/cards.handlers.ts:9:35\n\n  6 \n  7 export const list: RouteHandler<IListRoute> = async (c) => {\n  8   try {\n→ 9     const cards = await prisma.card.findMany(\nThe table `main.Card` does not exist in the current database.',
+    ),
   },
 })
 
@@ -125,7 +128,8 @@ export const oneById = createRoute({
       },
       description: 'Validation error',
     },
-    500: internalServerErrorResponse(
+    500: getErrorResponse(
+      500,
       '\nInvalid `prisma.card.findUnique()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/cards/cards.handlers.ts:26:34\n\n  23 export const oneById: RouteHandler<IOneByIdRoute> = async (c) => {\n  24   const { id } = c.req.valid(\'param\')\n  25   try {\n→ 26     const set = await prisma.set.findUnique({\n           where: ""\n                  ~~\n         })\n\nArgument `where`: Invalid value provided. Expected SetWhereUniqueInput, provided String.',
     ),
   },
