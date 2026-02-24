@@ -7,7 +7,7 @@ describe('Sets list', () => {
   it('successfully returns an array of sets', async () => {
     const testRouter = createApp().route('/', setsRouter)
 
-    const response = await testRouter.request('/sets')
+    const response = await testRouter.request('/')
     const result = await response.json()
 
     expect(response.status).toBe(200)
@@ -25,7 +25,7 @@ describe('Set by code', () => {
   it('returns 404 when set not found', async () => {
     const testRouter = createApp().route('/', setsRouter)
 
-    const response = await testRouter.request('/sets/abc')
+    const response = await testRouter.request('/abc')
     const result = await response.json()
 
     expect(response.status).toBe(404)
@@ -35,7 +35,7 @@ describe('Set by code', () => {
     const testRouter = createApp().route('/', setsRouter)
     const client = testClient(testRouter)
 
-    const response = await client.sets[':code'].$get({ param: { code: 'ecl' } })
+    const response = await client[':code'].$get({ param: { code: 'ecl' } })
     const result = await response.json()
 
     expect(response.status).toBe(200)
@@ -59,7 +59,7 @@ describe('Create set', () => {
       mechanics: ['Awesomeness', 'Testing'],
     }
 
-    const response = await testRouter.request('/sets', {
+    const response = await testRouter.request('/', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(setData),
