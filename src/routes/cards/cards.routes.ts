@@ -9,7 +9,7 @@ const tags = ['Cards']
 export const list = createRoute({
   tags,
   method: 'get',
-  path: '/',
+  path: '/cards',
   description: 'Fetches all cards',
   request: {
     query: z.object({
@@ -76,7 +76,7 @@ export const list = createRoute({
 
 export const oneById = createRoute({
   tags,
-  path: '/{id}',
+  path: '/cards/{id}',
   method: 'get',
   description: 'Get card by ID',
   request: {

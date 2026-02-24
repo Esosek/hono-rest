@@ -1,11 +1,10 @@
 import { logger as customLogger } from '@/logger.js'
-import { type IConfig } from '@/config.js'
 import createRouter from './create_router.js'
 import { logger } from 'hono/logger'
 import { HTTPException } from 'hono/http-exception'
 
-const createApp = (config: IConfig) => {
-  const app = createRouter(config.apiPrefix)
+const createApp = () => {
+  const app = createRouter()
   app.use(logger(customLogger))
 
   app.notFound((c) => c.json({ message: 'Not Found! - ' + c.req.path }, 404))

@@ -6,12 +6,14 @@ import setsRouter from './routes/sets/sets.index.js'
 import cardsRouter from './routes/cards/cards.index.js'
 import createApp from './utils/create_app.js'
 
-const app = createApp(config)
-
-const routers = [setsRouter, cardsRouter]
-routers.forEach((router) => app.route('/', router))
+const app = createApp()
 
 configureOpenAPI(app)
+
+const routers = [setsRouter, cardsRouter] as const
+routers.forEach((router) => app.route('/', router))
+
+export type AppType = (typeof routers)[number]
 
 serve(
   {

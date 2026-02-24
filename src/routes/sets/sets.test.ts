@@ -1,13 +1,13 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import setsRouter from './sets.index.js'
 import createApp from '@/utils/create_app.js'
-import config from '@/config.js'
+import { testClient } from 'hono/testing'
 
 describe('Sets list', () => {
   it('successfully returns an array of sets', async () => {
-    const testRouter = createApp(config).route('/', setsRouter)
+    const testRouter = createApp().route('/', setsRouter)
 
-    const response = await testRouter.request('/api/v1/sets')
+    const response = await testRouter.request('/sets')
     const result = await response.json()
 
     expect(response.status).toBe(200)
@@ -23,18 +23,19 @@ describe('Sets list', () => {
 
 describe('Set by code', () => {
   it('returns 404 when set not found', async () => {
-    const testRouter = createApp(config).route('/', setsRouter)
+    const testRouter = createApp().route('/', setsRouter)
 
-    const response = await testRouter.request('/api/v1/sets/abc')
+    const response = await testRouter.request('/sets/abc')
     const result = await response.json()
 
     expect(response.status).toBe(404)
     expect(result).toEqual({ message: 'Set not found!' })
   })
   it('successfully returns a set', async () => {
-    const testRouter = createApp(config).route('/', setsRouter)
+    const testRouter = createApp().route('/', setsRouter)
+    const client = testClient(testRouter)
 
-    const response = await testRouter.request('/api/v1/sets/ecl')
+    const response = await client.sets[':code'].$get({ param: { code: 'ecl' } })
     const result = await response.json()
 
     expect(response.status).toBe(200)
@@ -50,7 +51,7 @@ describe('Set by code', () => {
 
 describe('Create set', () => {
   it('fails to create set with existing code', async () => {
-    const testRouter = createApp(config).route('/', setsRouter)
+    const testRouter = createApp().route('/', setsRouter)
     const setData = {
       name: 'Test set',
       code: 'TS',
@@ -58,7 +59,7 @@ describe('Create set', () => {
       mechanics: ['Awesomeness', 'Testing'],
     }
 
-    const response = await testRouter.request('/api/v1/sets', {
+    const response = await testRouter.request('/sets', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(setData),

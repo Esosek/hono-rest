@@ -8,7 +8,7 @@ const tags = ['Sets']
 export const list = createRoute({
   tags,
   method: 'get',
-  path: '/',
+  path: '/sets',
   description: 'Fetches all sets',
   responses: {
     200: {
@@ -31,7 +31,7 @@ export const list = createRoute({
 export const oneByCode = createRoute({
   tags,
   method: 'get',
-  path: '/{code}',
+  path: '/sets/{code}',
   description: 'Fetch set by code',
   request: {
     params: z.object({
@@ -58,7 +58,7 @@ export const oneByCode = createRoute({
 export const create = createRoute({
   tags,
   method: 'post',
-  path: '/',
+  path: '/sets',
   description: 'Creates new set',
   request: {
     body: {

@@ -1,6 +1,5 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { OpenAPIHono } from '@hono/zod-openapi'
 
-const createRouter = (basePath?: string) =>
-  new OpenAPIHono({ strict: false }).basePath(basePath ?? "/");
+const createRouter = () => new OpenAPIHono({ strict: false })
 
-export default createRouter;
+export default createRouter
