@@ -1,29 +1,18 @@
 import '@picocss/pico/css/pico.amber.min.css'
 import './main.css'
-import { apiClient } from './api_client'
-import { useEffect, useState } from 'react'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { GetSets } from './GetSets'
 
 const App = () => {
-  const [sets, setSets] = useState<
-    { id: number; name: string; code: string; cardCount: number; mechanics: string[] }[]
-  >([])
-
-  useEffect(() => {
-    const fetchSets = async () => {
-      const response = await apiClient.sets.$get()
-      if (!response.ok) return
-      const data = await response.json()
-      setSets(data)
-    }
-
-    fetchSets()
-  }, [])
+  const queryClient = new QueryClient()
 
   return (
-    <main className='p-8 text-center'>
-      <h1>Hono REST</h1>
-      <pre className='text-left'>{JSON.stringify(sets, null, 2)}</pre>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <main className='p-8 text-center'>
+        <GetSets />
+      </main>
+    </QueryClientProvider>
   )
 }
 
