@@ -2,7 +2,7 @@ import '@picocss/pico/css/pico.amber.min.css'
 import './main.css'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { GetSets } from './GetSets'
+import { SetsPage } from './sets/SetsPage'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <main className='p-8 text-center'>
-        <GetSets />
+        <SetsPage />
       </main>
     </QueryClientProvider>
   )
