@@ -1,4 +1,4 @@
-import { logger as customLogger } from '@/logger.js'
+import { logger as customLogger } from '../logger.js'
 import createRouter from './create_router.js'
 import { logger } from 'hono/logger'
 import { HTTPException } from 'hono/http-exception'

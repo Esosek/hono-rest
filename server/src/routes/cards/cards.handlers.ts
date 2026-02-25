@@ -1,7 +1,7 @@
 import type { RouteHandler } from '@hono/zod-openapi'
 import type { IListRoute, IOnebyIdRoute } from './cards.routes.js'
-import prisma from '@/prisma/prisma.js'
-import log, { LogStatusEnum } from '@/logger.js'
+import prisma from '../../prisma/prisma.js'
+import log, { LogStatusEnum } from '../../logger.js'
 import { getErrorMessage } from '../routes_utils.js'
 
 const DEFAULT_LIMIT = 10

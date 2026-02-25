@@ -1,6 +1,6 @@
 import { createRoute, z } from '@hono/zod-openapi'
 import { CardSchema } from './cards.schema.js'
-import { cards } from '@/data/cards.js'
+import { cards } from '../../data/cards.js'
 import { getErrorResponse } from '../routes_utils.js'
 import { CardRarity, CardType } from '@/generated/prisma/enums.js'
 

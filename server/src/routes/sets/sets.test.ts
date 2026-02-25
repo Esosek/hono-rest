@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import setsRouter from './sets.index.js'
-import createApp from '@/utils/create_app.js'
+import createApp from '../../utils/create_app.js'
 import { testClient } from 'hono/testing'
 
 describe('Sets list', () => {

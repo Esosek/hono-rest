@@ -1,5 +1,5 @@
 import { createRoute, z } from '@hono/zod-openapi'
-import { sets } from '@/data/sets.js'
+import { sets } from '../../data/sets.js'
 import { InputSetSchema, SetSchema } from './sets.schema.js'
 import { getErrorResponse } from '../routes_utils.js'
 
