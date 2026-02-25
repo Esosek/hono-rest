@@ -1,3 +1,4 @@
+import '@picocss/pico/css/pico.amber.min.css'
 import './main.css'
 
 function App() {
