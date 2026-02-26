@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className='p-8 text-center'>
+      <main className='p-8 max-w-xl mx-auto text-center'>
         <SetsPage />
       </main>
     </QueryClientProvider>

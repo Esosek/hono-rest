@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+
+:root {
+  --pico-block-spacing-vertical: 5rem;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
