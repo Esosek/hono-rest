@@ -24,7 +24,6 @@ export const GetSetByCode = ({ sets }: IGetSetByCodeProps) => {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    console.log('Fetching', selectedSet, 'set!')
     refetch()
   }
 
