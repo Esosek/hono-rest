@@ -14,6 +14,10 @@ export const GetSetByCode = ({ sets }: IGetSetByCodeProps) => {
     enabled: false,
     queryFn: async () => {
       const response = await apiClient.sets[':code'].$get({ param: { code: selectedSet } })
+      if (!response.ok) {
+        console.error(response.status)
+        return
+      }
       return await response.json()
     },
   })

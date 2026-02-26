@@ -9,6 +9,10 @@ export const SetsPage = () => {
     queryKey: ['sets'],
     queryFn: async () => {
       const response = await apiClient.sets.$get()
+      if (!response.ok) {
+        console.error(response.status)
+        return
+      }
       return await response.json()
     },
   })
