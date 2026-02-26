@@ -7,35 +7,35 @@ export type ISet = {
 }
 
 export enum ColorEnum {
-  RED = 'red',
-  BLUE = 'blue',
-  WHITE = 'white',
-  BLACK = 'black',
-  GREEN = 'green',
-  MULTICOLOR = 'multicolor',
-  COLORLESS = 'colorless',
+  RED = 'RED',
+  BLUE = 'BLUE',
+  WHITE = 'WHITE',
+  BLACK = 'BLACK',
+  GREEN = 'GREEN',
+  MULTICOLOR = 'MULTICOLOR',
+  COLORLESS = 'COLORLESS',
 }
 
 export enum RarityEnum {
-  COMMON = 'common',
-  UNCOMMON = 'uncommon',
-  RARE = 'rare',
-  MYTHIC = 'mythic',
+  COMMON = 'COMMON',
+  UNCOMMON = 'UNCOMMON',
+  RARE = 'RARE',
+  MYTHIC = 'MYTHIC',
 }
 
 export enum CardTypeEnum {
-  CREATURE = 'creature',
-  INSTANT = 'instant',
-  SORCERY = 'sorcery',
-  LAND = 'land',
-  ARTIFACT = 'artifact',
-  ENCHANTMENT = 'enchantment',
+  CREATURE = 'CREATURE',
+  INSTANT = 'INSTANT',
+  SORCERY = 'SORCERY',
+  LAND = 'LAND',
+  ARTIFACT = 'ARTIFACT',
+  ENCHANTMENT = 'ENCHANTMENT',
 }
 
 export type ICard = {
   id: number
   name: string
-  setCode: string // TODO: This must be one of the existing sets
+  setCode: string // Must be one of the existing sets
   color: ColorEnum
   rarity: RarityEnum
   type: CardTypeEnum

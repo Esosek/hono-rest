@@ -31,7 +31,7 @@ export const GetCards = () => {
   })
 
   const onChange = (fieldName: string, value: string) => {
-    setFormData((state) => ({ ...state, [fieldName]: value === 'all' ? undefined : value.toUpperCase() }))
+    setFormData((state) => ({ ...state, [fieldName]: value === 'all' ? undefined : value }))
   }
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
@@ -64,7 +64,7 @@ export const GetCards = () => {
           <option value='all'>---</option>
           {Object.values(CardTypeEnum).map((type) => (
             <option key={type} value={type}>
-              {type.toUpperCase()}
+              {type}
             </option>
           ))}
         </select>
@@ -73,7 +73,7 @@ export const GetCards = () => {
           <option value='all'>---</option>
           {Object.values(RarityEnum).map((rarity) => (
             <option key={rarity} value={rarity}>
-              {rarity.toUpperCase()}
+              {rarity}
             </option>
           ))}
         </select>

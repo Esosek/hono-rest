@@ -8,8 +8,8 @@ export const CardSchema = z.object({
   color: z.enum(CardColor),
   rarity: z.enum(CardRarity),
   type: z.enum(CardType),
-  power: z.number().nullable(),
-  toughness: z.number().nullable(),
+  power: z.number().nullable().optional(),
+  toughness: z.number().nullable().optional(),
 })
 
 export const InputCardSchema = CardSchema.omit({ id: true })

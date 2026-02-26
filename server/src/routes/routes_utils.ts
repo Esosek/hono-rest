@@ -1,11 +1,13 @@
 import z from 'zod'
 
-type StatusCode = 404 | 500
+type StatusCode = 400 | 404 | 500
 
 export const getErrorMessage = (error: unknown) => (error instanceof Error ? error.message : String(error))
 
 const getErrorDescription = (code: StatusCode) => {
   switch (code) {
+    case 400:
+      return 'Invalid input error'
     case 404:
       return 'Not Found!'
     default:

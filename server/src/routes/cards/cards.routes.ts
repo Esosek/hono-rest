@@ -1,5 +1,5 @@
 import { createRoute, z } from '@hono/zod-openapi'
-import { CardSchema } from './cards.schema.js'
+import { CardSchema, InputCardSchema } from './cards.schema.js'
 import { cards } from '../../data/cards.js'
 import { getErrorResponse } from '../routes_utils.js'
 import { CardRarity, CardType } from '@/generated/prisma/enums.js'
@@ -135,5 +135,69 @@ export const oneById = createRoute({
   },
 })
 
+const { id, ...rest } = cards[0]
+export const create = createRoute({
+  tags,
+  method: 'post',
+  path: '/',
+  description: 'Creates new card',
+  request: {
+    body: {
+      content: {
+        'application/json': {
+          schema: InputCardSchema.openapi({
+            example: {
+              ...rest,
+            },
+          }),
+        },
+      },
+    },
+  },
+  responses: {
+    201: {
+      content: {
+        'application/json': {
+          schema: CardSchema.openapi({
+            example: cards[0],
+          }),
+        },
+      },
+      description: 'Created card',
+    },
+    400: getErrorResponse(400, 'Malformed JSON in request body'),
+    422: {
+      content: {
+        'application/json': {
+          schema: z
+            .object({
+              success: z.boolean(),
+              error: z.object({
+                name: z.string(),
+                mesage: z.string(),
+              }),
+            })
+            .openapi({
+              example: {
+                success: false,
+                error: {
+                  name: 'ZodError',
+                  message:
+                    '[\n  {\n    "expected": "number",\n    "code": "invalid_type",\n    "received": "NaN",\n    "path": [\n      "id"\n    ],\n    "message": "Invalid input: expected number, received NaN"\n  }\n]',
+                },
+              },
+            }),
+        },
+      },
+      description: 'Validation error',
+    },
+    500: getErrorResponse(
+      500,
+      '\nInvalid `prisma.set.create()` invocation in\n/var/home/esosek/Documents/WebDev/hono-rest/src/routes/cards/cards.handlers.ts:26:38\n\n  23 export const create: RouteHandler<ICreateRoute> = async (c) => {\n  24   const args = c.req.valid("json")\n  25   try {\n→ 26     const created = await prisma.card.create({\n           data: {\n             name: \"Lorwyn Eclipsed\",\n             code: \"ECL\",\n             cardCount: 274,\n             mechanics: [\n               \"Blight\",\n               \"Vivid\",\n               \"Affinity\",\n               \"Basic\",\n               \"Landcycling\",\n               \"Behold\",\n               \"Changeling\",\n               \"Conspire\",\n               \"Convoke\",\n               \"Evoke\",\n               \"Flashback\",\n               \"Persist\",\n               \"Proliferate\",\n               \"Transform\",\n               \"Wither\"\n             ]\n             ~~~~~~~~~~~~~~~\n           }\n         })\n\nArgument `mechanics`: Invalid value provided. Expected String, provided (String, String, String, String, String, String, String, String, String, String, String, String, String, String, String).',
+    ),
+  },
+})
+
 export type IListRoute = typeof list
 export type IOnebyIdRoute = typeof oneById
+export type ICreateRoute = typeof create
