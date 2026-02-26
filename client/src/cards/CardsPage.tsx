@@ -1,3 +1,4 @@
+import { GetCardById } from './GetCardById'
 import { GetCards } from './GetCards'
 
 export const CardsPage = () => {
@@ -5,6 +6,9 @@ export const CardsPage = () => {
     <>
       <section>
         <GetCards />
+      </section>
+      <section>
+        <GetCardById maxId={6} />
       </section>
     </>
   )
