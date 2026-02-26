@@ -6,6 +6,7 @@
     "build": "tsc",
     "test": "vitest",
     "generate": "npx prisma generate",
+    "seed": "npx prisma db seed",
     "prisma:reset": "npx prisma migrate reset && npx prisma db seed"
   },
   "dependencies": {
