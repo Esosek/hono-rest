@@ -50,9 +50,9 @@ http://localhost:3000/docs
 
 ## Technologies Used
 
-| Area     | Technologies         |
-| -------- | -------------------- |
-| Backend  | Hono, Prisma, npm    |
-| Frontend | React, Vite          |
-| Database | SQLite               |
-| API Docs | OpenAPI (Swagger UI) |
+| Area     | Technologies                                 |
+| -------- | -------------------------------------------- |
+| Backend  | [Hono](https://hono.dev/), Prisma, npm       |
+| Frontend | React, Vite, [PicoCSS](https://picocss.com/) |
+| Database | SQLite                                       |
+| API Docs | OpenAPI (Swagger UI)                         |
