@@ -8,19 +8,19 @@ import prisma from './prisma.js'
       {
         name: 'Lorwyn Eclipsed',
         code: 'ECL',
-        cardCount: 274,
+        cardCount: 3,
         mechanics: 'Blight|Vivid|Behold|Changeling|Convoke|Evoke',
       },
       {
         name: 'Foundations',
         code: 'FDN',
-        cardCount: 271,
+        cardCount: 3,
         mechanics: 'Flash|Flashback|Kicker|Landfall|Prowess|Raid|Threshold',
       },
       {
         name: 'Edge of Eternities',
         code: 'EOE',
-        cardCount: 276,
+        cardCount: 0,
         mechanics: 'Spacecraft|Planet|Warp|Void|Lander Tokens',
       },
     ],

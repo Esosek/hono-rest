@@ -67,7 +67,6 @@ export const create = createRoute({
           schema: InputSetSchema.openapi({
             example: {
               name: sets[0].name,
-              code: sets[0].code,
               cardCount: sets[0].cardCount,
               mechanics: sets[0].mechanics,
             },

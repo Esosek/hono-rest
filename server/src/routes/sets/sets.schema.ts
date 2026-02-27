@@ -8,4 +8,4 @@ export const SetSchema = z.object({
   mechanics: z.array(z.string()).nonempty(),
 })
 
-export const InputSetSchema = SetSchema.omit({ id: true })
+export const InputSetSchema = SetSchema.omit({ id: true, cardCount: true })

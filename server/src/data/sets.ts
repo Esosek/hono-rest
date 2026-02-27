@@ -31,4 +31,11 @@ export const sets: ISet[] = [
     cardCount: 271,
     mechanics: ['Flash', 'Flashback', 'Kicker', 'Landfall', 'Prowess', 'Raid', 'Threshold'],
   },
+  {
+    id: 2,
+    name: 'Edge of Eternity',
+    code: 'EOE',
+    cardCount: 0,
+    mechanics: ['Spacecraft', 'Planet', 'Warp', 'Void', 'Lander Tokens'],
+  },
 ] as const

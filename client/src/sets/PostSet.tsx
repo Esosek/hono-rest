@@ -6,12 +6,11 @@ import { useState } from 'react'
 type ISubmitData = {
   name: string
   code: string
-  cardCount: number
   mechanics: string[]
 }
 
 export const PostSet = () => {
-  const [formData, setFormData] = useState<ISubmitData>({ name: '', code: '', cardCount: 0, mechanics: [] })
+  const [formData, setFormData] = useState<ISubmitData>({ name: '', code: '', mechanics: [] })
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['post_set'],
     enabled: false,
@@ -65,17 +64,6 @@ export const PostSet = () => {
           id='set-code'
           maxLength={3}
           onChange={(e) => onChange('code', e.currentTarget.value)}
-        />
-        <label htmlFor='set-card-count'>Card Count</label>
-        <input
-          type='number'
-          name='set-card-count'
-          id='set-card-count'
-          min={0}
-          max={999}
-          placeholder='0'
-          value={formData.cardCount}
-          onChange={(e) => onChange('cardCount', e.currentTarget.value)}
         />
         <label htmlFor='set-mechanics'>Card Mechanics</label>
         <textarea

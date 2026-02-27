@@ -67,7 +67,11 @@ export const oneById: RouteHandler<IOnebyIdRoute> = async (c) => {
 export const create: RouteHandler<ICreateRoute> = async (c) => {
   const args = c.req.valid('json')
   try {
-    const createdCard = await prisma.card.create({ data: args })
+    const createdCard = await prisma.$transaction(async () => {
+      await prisma.set.update({ where: { code: args.setCode }, data: { cardCount: { increment: 1 } } })
+      return await prisma.card.create({ data: args })
+    })
+
     log('create card', LogStatusEnum.SUCCESS, 'ID ' + createdCard.id.toString())
     return c.json(createdCard, 201)
   } catch (error) {

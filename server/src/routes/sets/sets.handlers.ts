@@ -42,7 +42,9 @@ const stringToArray = (value: string, delimiter = '|'): Array<string> => value.s
 export const create: RouteHandler<ICreateRoute> = async (c) => {
   const args = c.req.valid('json')
   try {
-    const createdSet = await prisma.set.create({ data: { ...args, mechanics: arrayToString(args.mechanics) } })
+    const createdSet = await prisma.set.create({
+      data: { ...args, cardCount: 0, mechanics: arrayToString(args.mechanics) },
+    })
     log('create set', LogStatusEnum.SUCCESS, 'ID ' + createdSet.id.toString())
     return c.json({ ...createdSet, mechanics: stringToArray(createdSet.mechanics) }, 201)
   } catch (error) {
