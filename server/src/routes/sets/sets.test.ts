@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import setsRouter from './sets.index.js'
 import createApp from '../../utils/create_app.js'
 import { testClient } from 'hono/testing'
+import { sets } from '@/data/sets.js'
 
 describe('Sets list', () => {
   it('successfully returns an array of sets', async () => {
@@ -15,7 +16,7 @@ describe('Sets list', () => {
       id: 1,
       name: 'Lorwyn Eclipsed',
       code: 'ECL',
-      cardCount: 274,
+      cardCount: 3,
       mechanics: ['Blight', 'Vivid', 'Behold', 'Changeling', 'Convoke', 'Evoke'],
     })
   })
@@ -43,7 +44,7 @@ describe('Set by code', () => {
       id: 1,
       name: 'Lorwyn Eclipsed',
       code: 'ECL',
-      cardCount: 274,
+      cardCount: 3,
       mechanics: ['Blight', 'Vivid', 'Behold', 'Changeling', 'Convoke', 'Evoke'],
     })
   })
@@ -52,17 +53,10 @@ describe('Set by code', () => {
 describe('Create set', () => {
   it('fails to create set with existing code', async () => {
     const testRouter = createApp().route('/', setsRouter)
-    const setData = {
-      name: 'Test set',
-      code: 'TS',
-      cardCount: 3,
-      mechanics: ['Awesomeness', 'Testing'],
-    }
-
     const response = await testRouter.request('/', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(setData),
+      body: JSON.stringify(sets[0]),
     })
     const result = await response.json()
 
