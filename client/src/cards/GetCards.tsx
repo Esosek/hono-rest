@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { apiClient } from '../api_client'
 import { CardTypeEnum, RarityEnum } from '../../../server/src/interfaces'
 import { sets } from '../../../server/src/data/sets'
+import { Select } from '../fields/Select'
 
 type ISubmitData = {
   set?: string
@@ -45,38 +46,36 @@ export const GetCards = () => {
       {error && <p>Error: {error.message}</p>}
       <h3 className='text-left'>Filters</h3>
       <form className='text-left' onSubmit={handleSubmit}>
-        <label htmlFor='card-set'>Set Name</label>
-        <select
-          name='card-set'
+        <Select
           id='card-set'
-          value={formData.set}
-          onChange={(e) => onChange('set', e.currentTarget.value)}
-        >
-          <option value='all'>---</option>
-          {Object.values(sets).map((set) => (
-            <option key={set.code} value={set.code}>
-              {set.code + ' - ' + set.name}
-            </option>
-          ))}
-        </select>
-        <label htmlFor='card-type'>Type</label>
-        <select name='card-type' id='card-type' onChange={(e) => onChange('type', e.currentTarget.value)}>
-          <option value='all'>---</option>
-          {Object.values(CardTypeEnum).map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-        <label htmlFor='card-rarity'>Rarity</label>
-        <select name='card-rarity' id='card-rarity' onChange={(e) => onChange('rarity', e.currentTarget.value)}>
-          <option value='all'>---</option>
-          {Object.values(RarityEnum).map((rarity) => (
-            <option key={rarity} value={rarity}>
-              {rarity}
-            </option>
-          ))}
-        </select>
+          label='Set Name'
+          onChange={(value) => onChange('set', value)}
+          options={[
+            { value: 'all', label: '---' },
+            ...Object.values(sets).map((set) => ({ label: set.name, value: set.code })),
+          ]}
+          value={formData.set ?? '---'}
+        />
+        <Select
+          id='card-type'
+          label='Type'
+          onChange={(value) => onChange('type', value)}
+          options={[
+            { value: 'all', label: '---' },
+            ...Object.values(CardTypeEnum).map((type) => ({ label: type, value: type })),
+          ]}
+          value={formData.type ?? 'all'}
+        />
+        <Select
+          id='card-rarity'
+          label='Rarity'
+          onChange={(value) => onChange('rarity', value)}
+          options={[
+            { value: 'all', label: '---' },
+            ...Object.values(RarityEnum).map((rarity) => ({ label: rarity, value: rarity })),
+          ]}
+          value={formData.rarity ?? 'all'}
+        />
         <button>Fetch</button>
       </form>
 

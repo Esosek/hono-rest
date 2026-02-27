@@ -18,10 +18,7 @@ export const PostSet = () => {
     queryFn: async () => {
       const response = await apiClient.sets.$post({
         json: {
-          name: formData.name,
-          cardCount: formData.cardCount,
-          code: formData.code,
-          mechanics: formData.mechanics,
+          ...formData,
         },
       })
       return await response.json()

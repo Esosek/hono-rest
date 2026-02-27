@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 
 import { apiClient } from '../api_client'
+import { Select } from '../fields/Select'
 
 type IGetSetByCodeProps = {
   sets: { code: string; name: string }[]
@@ -30,18 +31,12 @@ export const GetSetByCode = ({ sets }: IGetSetByCodeProps) => {
   return (
     <>
       <h2>GET /sets/:code</h2>
-      <select
-        name='set-code'
-        id='code-select'
+      <Select
+        id='set-code'
         value={selectedSet}
-        onChange={(e) => {
-          setSelectedSet(e.currentTarget.value)
-        }}
-      >
-        {sets.map((set) => (
-          <option key={set.code} value={set.code}>{`${set.code.toUpperCase()} - ${set.name}`}</option>
-        ))}
-      </select>
+        onChange={(value) => setSelectedSet(value)}
+        options={sets.map((set) => ({ label: set.name, value: set.code }))}
+      />
       <button onClick={handleClick}>Fetch</button>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
