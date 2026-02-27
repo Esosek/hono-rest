@@ -81,21 +81,21 @@ export const PostCard = () => {
           id='card-color'
           label='Color'
           onChange={(value) => onChange('color', value)}
-          options={Object.values(ColorEnum)}
+          options={Object.values(ColorEnum).map((color) => ({ label: color, value: color }))}
           value={formData.color}
         />
         <Select
           id='card-rarity'
           label='Rarity'
           onChange={(value) => onChange('rarity', value)}
-          options={Object.values(RarityEnum)}
+          options={Object.values(RarityEnum).map((rarity) => ({ label: rarity, value: rarity }))}
           value={formData.rarity}
         />
         <Select
           id='card-type'
           label='Type'
           onChange={(value) => onChange('type', value)}
-          options={Object.values(CardTypeEnum)}
+          options={Object.values(CardTypeEnum).map((type) => ({ label: type, value: type }))}
           value={formData.type}
         />
         {formData.type === CardTypeEnum.CREATURE && (
