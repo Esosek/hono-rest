@@ -22,7 +22,8 @@ This project is a proof of concept for an OpenAPI-compliant **REST API backend b
 2. Set up Prisma:
 
    ```
-   npm run prisma:generate
+   npm run generate
+   npm run migrate
    npm run prisma:seed
    ```
 
